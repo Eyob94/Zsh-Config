@@ -105,12 +105,12 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 
 # .zshrc
-alias zconf="nvim ~/.zshrc"
+alias zconf="nvim ~/.config/zsh/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias nconf="cd ~/.config/nvim"
 alias tconf="cd ~/.config/tmux"
 alias n="nvim"
-alias zso="source ~/.zshrc"
+alias zso="source ~/.config/zsh/.zshrc"
 alias tso="tmux source-file ~/.config/tmux/tmux.conf"
 
 # fzf finders
