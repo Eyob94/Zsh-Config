@@ -112,6 +112,7 @@ alias tconf="cd ~/.config/tmux"
 alias n="nvim"
 alias zso="source ~/.config/zsh/.zshrc"
 alias tso="tmux source-file ~/.config/tmux/tmux.conf"
+alias t="tmux"
 
 # fzf finders
 alias sd='cd "$((fdfind . --type d | fzf) | sed "s/^$/""/")"'
