@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git rust docker docker-compose z zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,24 +105,25 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 
 # .zshrc
-alias zconf="nvim ~/.config/zsh/.zshrc"
+alias zconf="cd ~/.config/zsh"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias nconf="cd ~/.config/nvim"
 alias tconf="cd ~/.config/tmux"
 alias n="nvim"
+alias n.="nvim ."
 alias zso="source ~/.config/zsh/.zshrc"
 alias tso="tmux source-file ~/.config/tmux/tmux.conf"
 alias t="tmux"
 
 # fzf finders
-alias sd='cd "$((fdfind . --type d | fzf) | sed "s/^$/""/")"'
-alias sdh='cd "$((fdfind . --full-path ~ --type d | fzf) | sed "s/^$/""/")"'
-alias sdr='cd "$((fdfind . --full-path / --type d | fzf) | sed "s/^$/""/")"'
-# alias sf='xdg-open "$((fdfind . --type f | fzf) | sed "s/^$/""/")" &> /dev/null' # No preview
-# alias sfh='xdg-open "$((fdfind . --full-path ~ --type f | fzf) | sed "s/^$/""/")" &> /dev/null' # No preview
-alias sf='xdg-open "$((fdfind . --type f | fzf --preview "cat {}" | xargs) | sed "s/^$/""/")" &> /dev/null' # With preview
-alias sfh='xdg-open "$((fdfind . --full-path ~ --type f | fzf --preview "cat {}" | xargs) | sed "s/^$/""/")" &> /dev/null' # With preview
-alias sfr='xdg-open "$((fdfind . --full-path / --type f | fzf) | sed "s/^$/""/")" &> /dev/null'
+alias sd='cd "$((fd . --type d | fzf) | sed "s/^$/""/")"'
+alias sdh='cd "$((fd . --full-path ~ --type d | fzf) | sed "s/^$/""/")"'
+alias sdr='cd "$((fd . --full-path / --type d | fzf) | sed "s/^$/""/")"'
+# alias sf='xdg-open "$((fd . --type f | fzf) | sed "s/^$/""/")" &> /dev/null' # No preview
+# alias sfh='xdg-open "$((fd . --full-path ~ --type f | fzf) | sed "s/^$/""/")" &> /dev/null' # No preview
+alias sf='xdg-open "$((fd . --type f | fzf --preview "cat {}" | xargs) | sed "s/^$/""/")" &> /dev/null' # With preview
+alias sfh='xdg-open "$((fd . --full-path ~ --type f | fzf --preview "cat {}" | xargs) | sed "s/^$/""/")" &> /dev/null' # With preview
+alias sfr='xdg-open "$((fd . --full-path / --type f | fzf) | sed "s/^$/""/")" &> /dev/null'
 
 alias storebrew="cd attach-session -t storebrew"
 alias alaconf="cd /mnt/c/Users/moni/AppData/Roaming/alacritty"
@@ -137,3 +138,7 @@ if [ -f ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
 
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
